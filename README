@@ -2,11 +2,6 @@
 docfu
 =====
 
-    | Shaolin shadowboxing, and the docfu sword style
-    | If what you say is true, the Shaolin and the docfu could be dangerous.
-    | Do you think your docfu sword can defeat me?
-    | En garde, I'll let you try my docfu style.
-
 With docfu you can keep writing your project's documentation in same ol' [Markdown](http://daringfireball.net/projects/markdown/)
 (via [python-markdown](https://pypi.python.org/pypi/Markdown)), but you can (optionally) add templating logic
 (via [Jinja2](http://jinja.pocoo.org/)).
@@ -14,20 +9,12 @@ With docfu you can keep writing your project's documentation in same ol' [Markdo
 docfu works when given a directory, git repository (optionally a tag or branch), and shortened GitHub urls (feltnerm/docfu).
 This makes it a great tool for a git post-commit hook or as just a regular ol' documentation generator.
 
-docfu is at most alpha status right now. Please post ideas and bugs to the `issue tracker`_.
-
-.. _issue tracker: https://github.com/feltnerm/docfu/issues
-
-Contributions are welcome as well!
-
 Installation:
 -------------
 
-    *DUH-DUH-DUH...enter the docfu zone ...*
-
 ::
 
-    $ git clone https://github.com/feltnerm/docfu
+    $ git clone https://github.com/FineUploader/docfu
     $ cd docfu
     $ python setup.py install
 
@@ -36,20 +23,12 @@ Development:
 
 ::
 
-    $ git clone https://github.com/feltnerm/docfu
+    $ git clone https://github.com/FineUploader/docfu
     $ virtualenv docfu-env
     $ source docfu-env/bin/activate
     $ cd docfu
     $ python setup.py install
 
-
-Usage:
-------
-
-   | The game of chess is like a swordfight
-   | You must think first before you move
-   | Toad style is immensely strong and immune to nearly any weapon
-   | When it's properly used it's almost invincible
 
 ::
 
@@ -90,20 +69,17 @@ Usage:
 Examples:
 ---------
 
-   | Straight from the slums of Shaolin
-   | docfu Killa B'z on a swarm
-
 Using a git repository url:
 ~~~~~~~~~~~~~~~~~~~~~~~
-``docfu "https://github.com/feltnerm/docfu" "/home/feltnerm/public_html/docs"```
+``docfu "https://github.com/FineUploader/docfu" "/home/feltnerm/public_html/docs"```
 
 Using a short GitHub url:
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-``docfu "feltnerm/docfu" "/home/feltnerm/public_html/docs"```
+``docfu "FineUploader/docfu" "/home/feltnerm/public_html/docs"```
 
 Specify directories:
 ~~~~~~~~~~~~~~~~~~~~~~~
-``docfu --root-dir "docs" --source-dir "src" --templates-dir "templates" --assets-dir "assets" feltnerm/docfu" "/home/feltnerm/public_html/docs"``
+``docfu --root-dir "docs" --source-dir "src" --templates-dir "templates" --assets-dir "assets" FineUploader/docfu" "/home/feltnerm/public_html/docs"``
 
 Docfu a specific tag
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -111,6 +87,4 @@ Docfu a specific tag
 
 Docfu a specific branch
 ~~~~~~~~~~~~~~~~~~~~~~~
-``docfu  --branch "develop" "feltnerm/docfu" "/home/feltnerm/public_html/docs"``
-
-*From the slums of Shaolin, docfu strikes again*
+``docfu  --branch "develop" "FineUploader/docfu" "/home/feltnerm/public_html/docs"``
