@@ -14,8 +14,7 @@ from ext import render_markdown, MarkdownJinja
 from util import (
     git_clone, git_checkout,
     list_doc_tree, list_refs,
-    tmp_mk, tmp_close, tmp_cp,
-    get_git_tag, get_git_branch,
+    tmp_mk, tmp_close, tmp_cp, get_git_branch,
     parse_package_json, walk_files, uri_parse
 )
 
@@ -64,7 +63,9 @@ class Docfu(object):
             self.repository_dir = os.path.expanduser(self.uri)
             self.git_repo = False
         else:
-            self.repository_dir = git_clone(self.uri)
+            branch = kwargs['branch'] if 'branch' in kwargs else None
+            tag = kwargs['tag'] if 'tag' in kwargs else None
+            self.repository_dir = git_clone(self.uri, branch or tag)
             self.git_repo = True
 
         source_src_dir = self.root
@@ -84,8 +85,6 @@ class Docfu(object):
 
         self.templates_src_dir = os.path.join(self.repository_dir,
             templates_src_dir)
-        branch = kwargs['branch'] if 'branch' in kwargs else None
-        tag = kwargs['tag'] if 'tag' in kwargs else None
 
         self.branch = ''
         self.tag = ''
@@ -101,10 +100,6 @@ class Docfu(object):
         else:
             self.git_ref_type = 'file'
             self.git_ref_val = os.path.basename(self.uri)
-
-        if self.git_repo:
-            git_checkout(self.repository_dir, self.git_ref_type,
-                self.git_ref_val)
 
         if "/" in self.git_ref_val:
             self.git_ref_val = self.git_ref_val.replace("/", "_")
@@ -203,16 +198,8 @@ dest: %s """ % (self.uri, self.root, self.dest,
             #'DOC_TREE': list_doc_tree(self.source_src_dir),
             'PKG': parse_package_json(
                 os.path.join(self.repository_dir, 'package.json')),
-            'TAG': self._tag(),
             'BRANCH': self._branch()
         }
-
-    def _tag(self):
-        if self.git_repo and not self.tag:
-            if not self.tag:
-                return get_git_tag(self.repository_dir)
-            return self.tag
-        return ""
 
     def _branch(self):
         if self.git_repo:

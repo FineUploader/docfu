@@ -53,13 +53,13 @@ def parse_package_json(json_path):
 #
 # Git / repository utils
 #
-def git_clone(git_url):
+def git_clone(git_url, branchOrTag):
     """ Clone a github url into a temp directory. Set a global object to
     this class so it can be closed. """
     logger.debug("Cloning %s" % git_url)
     path = tmp_mk()
-    git_clone_cmd = shlex.split('git clone --depth=5 --no-single-branch %s %s'
-            % (str(git_url), str(path)))
+    git_clone_cmd = shlex.split('git clone --depth=1 -b %s %s %s'
+            % (str(branchOrTag), str(git_url), str(path)))
     logger.debug("%s" % git_clone_cmd)
     retcode = subprocess.check_call(git_clone_cmd)
     return path
@@ -80,13 +80,6 @@ def git_checkout(git_repo_path, ref_type, ref_val):
     output = subprocess.Popen(git_checkout_cmd,
         cwd="%s" % str(git_repo_path)).communicate()
     logger.info(output)
-
-
-def get_git_tag(git_repo_path):
-    repo = git.Repo(git_repo_path)
-    g = repo.git
-    tag = g.describe('--tags', g.rev_list('--tags', max_count=1))
-    return tag
 
 
 def get_git_branch(git_repo_path):
