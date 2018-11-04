@@ -20,7 +20,7 @@ settings.update(
         'argparse',
         'distribute',
         'Jinja2',
-        'Markdown',
+        'Markdown=2.6.11',
         'Pygments',
         'argparse',
         'GitPython'
